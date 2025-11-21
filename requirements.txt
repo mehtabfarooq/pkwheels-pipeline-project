@@ -5,3 +5,4 @@ pyodbc
 sqlalchemy
 urllib3
 sqlite3
+numpy
