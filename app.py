@@ -6,33 +6,37 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sqlalchemy import create_engine
 import urllib
+import sqlite3
 
 st.set_page_config(layout="wide") 
 
 ##Connecting to database
-server = st.secrets["DB_SERVER"]
-database = st.secrets["DB_NAME"]
-username = st.secrets["DB_USER"]
-password = st.secrets["DB_PASSWORD"]
-table_name = st.secrets["DB_TABLE_NAME"]
-
-connection_string = (
-    f"DRIVER={{ODBC Driver 17 for SQL Server}};"
-    f"SERVER={server};"
-    f"DATABASE={database};"
-    f"UID={username};"
-    f"PWD={password};"
-    f"Encrypt=no;"
-)
+#server = st.secrets["DB_SERVER"]
+#database = st.secrets["DB_NAME"]
+#username = st.secrets["DB_USER"]
+#password = st.secrets["DB_PASSWORD"]
+#table_name = st.secrets["DB_TABLE_NAME"]
+#
+#connection_string = (
+#    f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+#    f"SERVER={server};"
+#    f"DATABASE={database};"
+#    f"UID={username};"
+#    f"PWD={password};"
+#    f"Encrypt=no;"
+#)
 
 # URL encode the ODBC string
-params = urllib.parse.quote_plus(connection_string)
+#params = urllib.parse.quote_plus(connection_string)
 
-engine = create_engine(f"mssql+pyodbc:///?odbc_connect={params}")
+#engine = create_engine(f"mssql+pyodbc:///?odbc_connect={params}")
 
+conn = sqlite3.connect("cars.db")
+table_name = "car_listings"
 
 def runDbQuery(query):
-    result = pd.read_sql(query, engine)
+    #result = pd.read_sql(query, engine)
+    result = pd.read_sql(query, conn)
     return result
 
 

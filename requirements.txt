@@ -4,3 +4,4 @@ pandas
 pyodbc
 sqlalchemy
 urllib3
+sqlite3
